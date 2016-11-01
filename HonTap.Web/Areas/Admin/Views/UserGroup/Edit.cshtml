@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="form-group">
-                                @foreach (var item in (IEnumerable<Blog.Model.Models.Role>)ViewBag.Role)
+                                @foreach (var item in (IEnumerable<HonTap.Model.Models.Role>)ViewBag.Role)
                                 {
                                     <label class="role">
                                         <input type="checkbox" class="mYcheckbox" value="@(item.ID)">@item.Name

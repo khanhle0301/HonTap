@@ -11,7 +11,8 @@ namespace HonTap.Web.Areas.Admin.Controllers
     public class UserGroupController : BaseController
     {
         private UserGroupDao _userGrDao = new UserGroupDao();
-       
+        private CredentialDao _credentialDao = new CredentialDao();
+
         [HasCredential(RoleID = "VIEW_USERGROUP")]
         public ActionResult Index()
         {
@@ -45,6 +46,7 @@ namespace HonTap.Web.Areas.Admin.Controllers
                     }
                     else if (res > 0)
                     {
+                        _credentialDao.Create(userGr, model.Role);
                         SetAlert("Thêm thành công", "success");
                         return RedirectToAction("Index", "UserGroup");
                     }
@@ -90,6 +92,7 @@ namespace HonTap.Web.Areas.Admin.Controllers
                 }
                 else if (res > 0)
                 {
+                    _credentialDao.Update(userGr, model.Role);
                     SetAlert("Cập nhật thành công", "success");
                     return RedirectToAction("Index", "UserGroup");
                 }
