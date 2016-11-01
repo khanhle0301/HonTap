@@ -1,0 +1,76 @@
+﻿
+#layout .header-outer {
+    width: 300px;
+    float: left;
+}
+
+#layout .ads-header1.section {
+    width: 705px;
+    float: right;
+}
+
+#layout #sidebar {
+    width: 315px;
+    float: right;
+}
+
+#layout .content {
+    width: 700px;
+    float: left;
+}
+
+#layout li {
+    display: none;
+}
+
+#layout #theme-footer {
+    position: relative;
+    color: #ddd;
+    background: #333;
+    padding: 15px 0 0;
+}
+
+    #layout #theme-footer a {
+        color: #ccc;
+    }
+
+#layout #footer-widget-area {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+#layout .footer-widgets-box {
+    float: left;
+    margin-right: 1%;
+}
+
+#layout #footer-1 {
+    width: 25.5%;
+}
+
+#layout #footer-2 {
+    width: 20.5%;
+}
+
+#layout #footer-3 {
+    width: 21%;
+}
+
+#layout #footer-4 {
+    width: 30%;
+    margin-right: 0;
+}
+
+#layout #stylebox-4-left {
+    width: 47%;
+    float: left;
+}
+
+#layout #stylebox-4-right {
+    width: 47%;
+    float: right;
+}
+
+.CSS_LIGHTBOX {
+    z-index: 9999 !important;
+}

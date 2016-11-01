@@ -1,0 +1,37 @@
+﻿@model IEnumerable<HonTap.Web.Models.PostCategoryViewModel>
+
+<ul>
+    <li>
+        <a href="/">Trang chủ</a>
+    </li>
+    @foreach (var category in Model.Where(x => x.ParentID == null))
+    {
+        var childCategories = Model.Where(x => x.ParentID == category.ID);
+        if (childCategories.Count() > 0)
+        {
+            <li class='has-sub'>
+                <a href='/@(category.Alias).html'>@category.Name</a>
+                <ul>
+                    @foreach (var childCategory in childCategories)
+                    {
+                        <li><a href='/@(childCategory.Alias).html'>@childCategory.Name</a></li>
+                    }
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href='/@(category.Alias).html'>@category.Name</a>
+            </li>
+        }
+    }
+    <li id="searchboxbswright">
+        <div class="search-box">
+            <form action="/tim-kiem.html" class="search-form" method="get" target="_top">
+                <input class="search-text" name="keyword" placeholder="Tìm kiếm trên blog..." type="text">
+                <button class="search-button" type="submit"><span><i class="fa fa-search"></i></span></button>
+            </form>
+        </div>
+    </li>
+</ul>

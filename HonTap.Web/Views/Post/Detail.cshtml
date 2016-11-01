@@ -1,0 +1,129 @@
+﻿@model HonTap.Model.Models.Post
+@{
+    ViewBag.Title = Model.Name + " | Hỗn Tạp Blog";
+    ViewBag.Keywords = Model.MetaKeyword;
+    ViewBag.Descriptions = Model.MetaDescription;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var url = "/" + Model.PostCategory.Alias + "/" + Model.Alias + "-" + Model.ID + ".html";
+    var urlface = Request.Url.ToString();
+}
+
+<div class="content" itemscope="itemscope" itemtype="http://schema.org/Blog">
+    <div class="main section" id="main" name="Số điện thoại chính">
+        <div class="widget Blog" data-version="1" id="Blog1">
+            <div class="breadcrumbs">
+                <span typeof="v:Breadcrumb">
+                    <a href="/" property="v:title" rel="v:url">
+                        Trang chủ
+                    </a>
+                </span>
+                »
+                <span typeof="v:Breadcrumb">
+                    <a href="/@Model.PostCategory.Alias/@(Model.Alias).html" property="v:title" rel="v:url">
+                        @Model.PostCategory.Name
+                    </a>
+                </span>
+                »
+                <span>
+                    @Model.Name
+                </span>
+            </div>
+            <div class="blog-posts hfeed">
+                <div class="post hentry" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+                    <a name="2571876597643394148"></a>
+                    <h2 class="post-title entry-title" itemprop="name">
+                        @Model.Name
+                    </h2>
+                    <div class="post-header">
+                        <div class="post-footer">
+                            <div class="post-footer-line post-footer-line-1">
+                                <span class="post-author vcard">
+                                    <span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                                        <i class="fa fa-user"></i>
+                                        <span itemprop="name">
+                                            @Model.UpdatedBy
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="post-timestamp">
+                                    <a class="timestamp-link" href="javascript:void(0);" rel="bookmark" title="permanent link">
+                                        <abbr class="published" itemprop="datePublished">
+                                            <i class="fa fa-clock-o"></i>
+                                            @Model.UpdatedDate.Value.ToString("g")
+                                        </abbr>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div class="post-body entry-content" id="post-body-2571876597643394148" itemprop="articleBody">
+                        <span id="2571876597643394148">
+                            @Html.Raw(Model.Content)
+                        </span>
+                        <div class="share-post">
+                            <ul>
+                                <li>
+                                    <div class="fb-like" data-href="@urlface" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+                                </li>                                
+                            </ul>
+                        </div>
+                        <div style="clear:both"></div>
+
+                        <div class="chuyen-bai" id="chuyen-bai">
+                            <h4>Bài viết liên quan</h4>
+                            @foreach (var item in (IEnumerable<HonTap.Web.Models.PostViewModel>)ViewBag.Related)
+                            {
+                                <span id="bai-sau">
+                                    <a class="bai-sau" href="/@item.PostCategory.Alias/@item.Alias-@(item.ID).html" id="Blog1_blog-pager-newer-link" title="@item.Name">
+                                        <h7>
+                                            @item.Name
+                                        </h7>
+                                    </a>
+                                </span>
+                            }
+                        </div>
+                        <div class="clear"></div>
+                        <section id="author-box">
+                            <div class="block-head">
+                                <h3>
+                                    Chủ bút:  Hỗn Tạp Blog
+                                </h3>
+                                <div class="stripe-line"></div>
+                            </div>
+                            <div class="post-listing">
+                                <div class="author-bio">
+                                    <div class="author-avatar">
+                                        <img class="tie-appear" src="http://seo.edu.vn/images/news/2013/11/thu%20thuat%20seo/huong-dan-tao-blogspot-blogger4.jpg">
+                                    </div>
+                                    <div class="author-description">
+                                        Hỗn tạp blog, blog lưu giữ tất cả các bài viết hay trên mạng internet, từ tin tức công nghệ, cho đến sức khỏe, làm đẹp. Từ thủ thuật blogger cho đến Facebook
+                                    </div>
+                                    <div class="author-social flat-social">
+                                        <a class="social-site" href="http://hontapblog.ga">
+                                            <i class="fa fa-home"></i>
+                                        </a>
+                                        <a class="social-facebook" href="https://www.facebook.com/">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                        <a class="social-twitter" href="http://twitter.com/">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a class="social-google-plus" href="https://plus.google.com/">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--face-->
+                        <div class="fb-comments" data-href="@urlface" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

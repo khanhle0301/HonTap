@@ -1,0 +1,50 @@
+﻿@model IEnumerable<HonTap.Web.Models.PostViewModel>
+
+<div class='theiaStickySidebar section' id='theiaStickySidebar'>
+    <div class='widget PopularPosts' data-version='1' id='PopularPosts2'>
+        <h2>
+            Bài viết xem nhiều
+        </h2>
+        <div class='widget-content popular-posts'>
+            <ul>
+                @foreach (var item in Model)
+                {
+                    var url = "/" + item.PostCategory.Alias + "/" + item.Alias + "-" + item.ID + ".html";
+                    <li>
+                        <div class='item-thumbnail-only'>
+                            <div class='item-thumbnail'>
+                                <a href='@url'>
+                                    <img alt='@item.Name' height='72' src='@item.Image' width='72' />
+                                </a>
+                            </div>
+                            <div class='item-title'>
+                                <a href='@url'>
+                                    @item.Name
+                                </a>
+                            </div>
+                        </div>
+                        <div style='clear: both;'></div>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>    
+    <div class='widget Label' data-version='1' id='Label1'>
+        <h2>
+            Meta Tag
+        </h2>
+        <div class='widget-content list-label-widget-content'>
+            <ul>
+                @foreach (var item in (IEnumerable<HonTap.Model.Models.Tag>)ViewBag.Tags)
+                {
+                    <li>
+                        <a dir='ltr' href='/tag/@(item.ID).html'>
+                            @item.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

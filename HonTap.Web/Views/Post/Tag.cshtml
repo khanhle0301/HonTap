@@ -1,0 +1,109 @@
+﻿@model HonTap.Web.Infrastructure.Core.PaginationSet<HonTap.Web.Models.PostViewModel>
+@{
+    ViewBag.Title = ViewBag.Tag.Name + " | Hỗn Tạp Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class='main section' id='main' name='Số điện thoại chính'>
+    <div class='widget Blog' data-version='1' id='Blog1'>
+        <div style="clear: both;"></div>
+        <div class="breadcrumbs">
+            <span>
+                <a href="/">
+                    Trang chủ
+                </a>
+            </span>
+            »
+            <span>
+                Bài viết cho "
+                @ViewBag.Tag.Name"
+            </span>
+        </div>
+        @if (Model.Count > 0)
+        {
+            <div class='blog-posts hfeed'>
+                @foreach (var item in Model.Items)
+                {
+                    var url = "/" + item.PostCategory.Alias + "/" + item.Alias + "-" + item.ID + ".html";
+                    <div class="post hentry" itemprop="blogPost" itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+                        <a name="2571876597643394148"></a>
+                        <h2 class="post-title entry-title" itemprop="name">
+                            <a href="@url">
+                                @item.Name
+                            </a>
+                        </h2>
+                        <div class="post-header">
+                            <div class="post-footer">
+                                <div class="post-footer-line post-footer-line-1">
+                                    <span class="post-author vcard">
+                                        <span class="fn" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">
+                                            <i class="fa fa-user"></i>
+                                            <span itemprop="name">
+                                                @item.UpdatedBy
+                                            </span>
+                                        </span>
+                                    </span>
+                                    <span class="post-timestamp">
+                                        <a class="timestamp-link" href="javascript:void(0);" rel="bookmark" title="permanent link">
+                                            <abbr class="published" itemprop="datePublished">
+                                                <i class="fa fa-clock-o"></i>
+                                                @item.UpdatedDate.Value.ToString("g")
+                                            </abbr>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-body entry-content" id="post-body-2571876597643394148" itemprop="articleBody">
+                            <span id="2571876597643394148">
+                                <img width="275" height="165" style="float:left;margin:0 15px 5px 0;padding:0;border-radius:10px 0" src="@item.Image"> @item.Description
+                            </span>
+                            <div class="readmore">
+                                <a href="@url">
+                                    Xem tiếp »
+                                </a>
+                            </div>
+                            <script type="text/javascript">
+                                summary("2571876597643394148")</script>
+                            <div style="clear: both;"></div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="blog-pager" id="blog-pager">
+                @if (Model.TotalPages > 1)
+                {
+                    var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                    var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+                    <ul class="pager nomargin">
+                        @if (Model.Page > 1)
+                    {
+                            <span id="blog-pager-newer-link">
+                                <a class="blog-pager-newer-link" href="?page=@(Model.Page-1)" id="Blog1_blog-pager-newer-link" title="Bài đăng mới hơn">
+                                    Bài đăng mới hơn →
+                                </a>
+                            </span>
+                        }
+                        @if (Model.Page < Model.TotalPages)
+                    {
+                            <span id="blog-pager-older-link">
+                                <a class="blog-pager-older-link" href="?page=@(Model.Page+1)" id="Blog1_blog-pager-older-link" title="Bài đăng cũ hơn">
+                                    &larr; Bài đăng cũ hơn
+                                </a>
+                            </span>
+                        }
+                    </ul>
+                }
+            </div>
+        }
+        else
+        {
+            <br />
+            <div class='blog-posts hfeed'>
+                <span>Không có bản ghi nào được tìm thấy.</span>
+            </div>
+        }
+        <div class='clear'></div>
+        <div class='clear'></div>
+    </div>
+</div>
